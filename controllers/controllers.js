@@ -8,7 +8,18 @@ exports.apiHomePage = (req, res) => {
 }
 
 exports.apiSinglePage = (req, res) => {
-    res.render('music')
+    let counter = 0
+    const newResults = []
+
+    searchTunes('Happy')
+    .then(result => {
+        while (counter < 10) {
+            newResults.push(result.result[counter])
+            ++counter;
+        }
+        res.render('music', { newResults })
+    })
+    .catch(console.log)
 }
 
 exports.apiArtistsPage = (req, res) => {
@@ -18,5 +29,4 @@ exports.apiArtistsPage = (req, res) => {
 exports.apiAlbumPage = (req, res) => {
     res.render('albums')
 }
-
 

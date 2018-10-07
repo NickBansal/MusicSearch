@@ -4,10 +4,16 @@ const apiKey = 'cd17d4bc2bd1ecf4e43bcb229b2211ac';
 const lastfm = new LastFM(apiKey, { userAgent: 'localhost:8000/api' })
 
 const searchTunes = (q) => {
-    return lastfm.trackSearch({ q }, (err, data) => {
-        if (err) console.error(err)
-        else console.log(data)
-    })
+    return new Promise((resolve, reject) => {
+        lastfm.trackSearch({ q }, (err, data) => {
+            if (err) {
+                reject(err)
+                return
+            } else {
+                resolve(data)
+            }
+        })
+    }) 
 }
 
 const searchArtists = (name) => {
@@ -17,6 +23,13 @@ const searchArtists = (name) => {
     })
 }
 
+
+// if (err) {
+//     reject(err);
+//     return;
+//   } else {
+//     resolve(translation);
+//   }
 
 module.exports = {
     searchTunes,

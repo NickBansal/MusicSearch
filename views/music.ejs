@@ -2,5 +2,26 @@
 
 <h1>SINGLES</h1>
 
+<form action="/api/singles" method='POST'>
+    <label for="team_name">Enter Song: </label>
+    <input id="single" type="text" name="name_field" placeholder="Enter single name...">
+    <input type="submit" value="OK">
+</form>
+
+<div class='Box'>
+    
+    <% newResults.forEach(track => { %>
+    <div class='Singles'>
+        <img src='<%= track.images[2] %>'>
+        <div class='Details'>
+            <h1><%= track.artistName %></h1>
+            <h2><%= track.name %></h2>
+        </div>
+    </div>
+    <% }) %>
+</div>
+
+
+
 
 <% include ./partials/footer.ejs %>
